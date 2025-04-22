@@ -3,13 +3,24 @@
 #include "../object.hpp"
 #include <random>
 
+enum Attribute
+{
+    X,
+    Y,
+    X_VEL,
+    Y_VEL,
+    X_ACC,
+    Y_ACC
+};
+
 class Sensor
 {
     public:
         Sensor(Object * parent, float noise, float bias);
         Sensor(Object * parent, float noise);
 
-        float get();
+        float get(Attribute attribute);
+        
     protected:
         Object * parent;
         float trueValue;
@@ -18,19 +29,4 @@ class Sensor
 };
 
 float getGaussianNoise(float mean, float stddev);
-
-
-class PositionSensor : public Sensor
-{
-    public:
-        using Sensor::Sensor;
-        float get();
-};
-class Altimeter : public Sensor
-{
-    public:
-        using Sensor::Sensor;
-        float get();
-};
-
 #endif

@@ -26,23 +26,32 @@ float getGaussianNoise(float mean, float stddev)
     return distribution(generator);
 }
 
-// Not intended for use; returns a dummy value
-float Sensor::get() {return 0.0;}
-
-// Returns the position of the parent object with added noise and bias
-float PositionSensor::get()
+float Sensor::get(Attribute attribute)
 {
-    float trueValue = this->parent->getY();
+    float trueValue = 0.0;
+
+    switch (attribute)
+    {
+        case X:
+            trueValue = this->parent->getX();
+            break;
+        case Y:
+            trueValue = this->parent->getY();
+            break;
+        case X_VEL:
+            trueValue = this->parent->getXVel();
+            break;
+        case Y_VEL:
+            trueValue = this->parent->getYVel();
+            break;
+        case X_ACC:
+            trueValue = this->parent->getXAcc();
+            break;
+        case Y_ACC:
+            trueValue = this->parent->getYAcc();
+            break;
+    }
+    
     float noise = getGaussianNoise(0.0, this->noise);
     return trueValue + noise + this->bias;
 }
-
-// Returns the altitude of the parent object with added noise and bias
-float Altimeter::get()
-{
-    float trueValue = this->parent->getY();
-    float noise = getGaussianNoise(0.0, this->noise);
-    return trueValue + noise + this->bias;
-}
-
-
