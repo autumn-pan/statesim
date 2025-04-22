@@ -37,4 +37,12 @@ float PositionSensor::get()
     return trueValue + noise + this->bias;
 }
 
+// Returns the altitude of the parent object with added noise and bias
+float Altimeter::get()
+{
+    float trueValue = this->parent->getY();
+    float noise = getGaussianNoise(0.0, this->noise);
+    return trueValue + noise + this->bias;
+}
+
 

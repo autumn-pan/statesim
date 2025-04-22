@@ -24,7 +24,13 @@ class PositionSensor : public Sensor
 {
     public:
         using Sensor::Sensor;
-
         float get();
 };
+class Altimeter : public Sensor
+{
+    public:
+        using Sensor::Sensor;
+        float get();
+};
+
 #endif
