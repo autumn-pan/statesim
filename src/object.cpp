@@ -22,6 +22,13 @@ void Object::setAcc(float xAcc, float yAcc)
 }
 
 
+float Object::getX() {return this->x;}
+float Object::getY() {return this->y;}
+float Object::getXVel() {return this->xVel;}
+float Object::getYVel() {return this->yVel;}
+float Object::getXAcc() {return this->xAcc;}
+float Object::getYAcc() {return this->yAcc;}
+
 void Object::update(float deltaTime)
 {
     this->x += this->xVel * deltaTime;

@@ -11,6 +11,12 @@ class Object
 
         void update(float deltaTime);
 
+        float getX();
+        float getY();
+        float getXVel();
+        float getYVel();
+        float getXAcc();
+        float getYAcc();
 
     private:
         float x;
