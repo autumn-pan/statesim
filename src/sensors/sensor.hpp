@@ -1,5 +1,5 @@
-#ifndef POSITION_HPP
-#define POSITION_HPP
+#ifndef SENSOR_HPP
+#define SENSOR_HPP
 #include "../object.hpp"
 #include <random>
 
@@ -10,7 +10,7 @@ class Sensor
         Sensor(Object * parent, float noise);
 
         float get();
-    private:
+    protected:
         Object * parent;
         float trueValue;
         float noise;
@@ -18,4 +18,13 @@ class Sensor
 };
 
 float getGaussianNoise(float mean, float stddev);
+
+
+class PositionSensor : public Sensor
+{
+    public:
+        using Sensor::Sensor;
+
+        float get();
+};
 #endif

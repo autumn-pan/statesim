@@ -1,4 +1,4 @@
-#include "position.hpp"
+#include "sensor.hpp"
 
 // PositionSensor constructor
 Sensor::Sensor(Object * parent, float noise, float bias)
@@ -28,4 +28,13 @@ float getGaussianNoise(float mean, float stddev)
 
 // Not intended for use; returns a dummy value
 float Sensor::get() {return 0.0;}
+
+// Returns the position of the parent object with added noise and bias
+float PositionSensor::get()
+{
+    float trueValue = this->parent->getY();
+    float noise = getGaussianNoise(0.0, this->noise);
+    return trueValue + noise + this->bias;
+}
+
 
