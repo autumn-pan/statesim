@@ -1,7 +1,7 @@
 #include "position.hpp"
 
 // PositionSensor constructor
-PositionSensor::PositionSensor(Object * parent, float noise, float bias)
+Sensor::Sensor(Object * parent, float noise, float bias)
 {
     this->parent = parent;
     this->noise = noise;
@@ -9,7 +9,7 @@ PositionSensor::PositionSensor(Object * parent, float noise, float bias)
 }
 
 // Instantiates a PositionSensor with a default bias of 0.0
-PositionSensor::PositionSensor(Object * parent, float noise)
+Sensor::Sensor(Object * parent, float noise)
 {
     this->parent = parent;
     this->noise = noise;
@@ -26,9 +26,6 @@ float getGaussianNoise(float mean, float stddev)
     return distribution(generator);
 }
 
-// Returns the measured position of the object
-float PositionSensor::get()
-{
-    this->trueValue = this->parent->getX();
-    return this->trueValue + bias + getGaussianNoise(bias, noise);
-}
+// Not intended for use; returns a dummy value
+float Sensor::get() {return 0.0;}
+

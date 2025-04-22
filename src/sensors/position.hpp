@@ -3,11 +3,11 @@
 #include "../object.hpp"
 #include <random>
 
-class PositionSensor
+class Sensor
 {
     public:
-        PositionSensor(Object * parent, float noise, float bias);
-        PositionSensor(Object * parent, float noise);
+        Sensor(Object * parent, float noise, float bias);
+        Sensor(Object * parent, float noise);
 
         float get();
     private:
