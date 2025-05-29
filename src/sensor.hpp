@@ -1,7 +1,8 @@
 #ifndef SENSOR_HPP
 #define SENSOR_HPP
-#include "../object.hpp"
+#include "./object.hpp"
 #include <random>
+#include <vector>
 
 enum Attribute
 {
@@ -20,12 +21,14 @@ class Sensor
         Sensor(Object * parent, float noise);
 
         float get(Attribute attribute);
+        float calculateVariance();
         
     protected:
         Object * parent;
         float trueValue;
         float noise;
         float bias;
+        std::vector<float> deviations;
 };
 
 float getGaussianNoise(float mean, float stddev);

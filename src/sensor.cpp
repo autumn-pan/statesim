@@ -51,7 +51,29 @@ float Sensor::get(Attribute attribute)
             trueValue = this->parent->getYAcc();
             break;
     }
-    
-    float noise = getGaussianNoise(0.0, this->noise);
-    return trueValue + noise + this->bias;
+
+    float noise = getGaussianNoise(bias, this->noise);
+    this->deviations.push_back(noise);
+
+    return trueValue + noise;
 }
+
+float Sensor::calculateVariance()
+{
+    float sum = 0;
+    for(int i = 0; i < this->deviations.size(); i++)
+    {
+        sum += this->deviations[i];
+    }
+
+    sum /= this->deviations.size();
+    float variance = 0;
+    for(int i = 0; i < this->deviations.size(); i++)
+    {
+        variance += (this->deviations[i] - sum) * (this->deviations[i] - sum);
+    }
+    variance /= this->deviations.size() - 1; // Sample variance
+    return variance;
+}
+
+

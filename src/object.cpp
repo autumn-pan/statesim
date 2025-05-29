@@ -31,8 +31,8 @@ float Object::getYAcc() {return this->yAcc;}
 
 void Object::update(float deltaTime)
 {
-    this->x += this->xVel * deltaTime;
-    this->y += this->yVel * deltaTime;
+    this->x += this->xVel * deltaTime + 0.5* this->xAcc * deltaTime * deltaTime;
+    this->y += this->yVel * deltaTime + 0.5 * this->yAcc * deltaTime * deltaTime;
 
     this->xVel += this->xAcc * deltaTime;
     this->yVel += this->yAcc * deltaTime;
